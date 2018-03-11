@@ -1,0 +1,31 @@
+var myApp = angular.module('shoppinglist', ['ui.router', 'oc.lazyLoad', ]);
+
+myApp.config(function($stateProvider) {
+
+  //$urlRouterProvider.otherwise('/');
+
+  $stateProvider
+
+  .state('home', {
+    url: '/',
+    template: 'XXXXX',
+    resolve: {
+      deps: ['$ocLazyLoad', function($ocLazyLoad) {
+
+        //extra css:
+        return $ocLazyLoad.load([
+          'static/shoppinglist/components/shoppinglist/shoppinglist.css',
+        ])
+        .then(function(){
+          return $ocLazyLoad.load([
+            'static/shoppinglist/components/shoppinglist/shoppinglist.model.js',
+            'static/shoppinglist/components/shoppinglist/shoppinglist.component.js',
+          ]);
+        });
+
+      }]
+    }
+
+  });
+
+});
