@@ -158,50 +158,7 @@
   <!--Frontend app files:-->
   <script src="{% static 'shoppinglist/config/config.router.js' %}"></script>
 
-  <aside>
-    <h1>Groceries</h1>
+  <ui-view></ui-view>
 
-    <label>
-      <input type=checkbox>
-      <span>Salad greens</span>
-    </label>
-
-    <!--<label>-->
-      <!--<input type=checkbox>-->
-      <!--<span>Salad greens</span>-->
-    <!--</label>-->
-
-  </aside>
-  <script>
-    // Add Additional Items
-    var aside = document.querySelector('aside'),
-        div = document.createElement('div'),
-        text = document.createElement('input'),
-        button = document.createElement('input')
-    text.type = 'text'
-    text.id = 'input'
-    button.type = 'button'
-    button.setAttribute('data-button','outline')
-    button.value = '➕'
-    button.setAttribute('onclick','addItem(input.value)')
-    div.appendChild(text)
-    div.appendChild(button)
-    aside.appendChild(div)
-    function addItem(text){
-      var div = document.querySelector('div'),
-          input = document.getElementById('input')
-      if (text !== ''){
-        input.value = ''
-        var label = document.createElement('label'),
-            input = document.createElement('input'),
-            span = document.createElement('span')
-        input.type = 'checkbox'
-        span.innerHTML = text
-        label.appendChild(input)
-        label.appendChild(span)
-        div.parentNode.insertBefore(label,div)
-      }
-    }
-  </script>
 </body>
 </html>

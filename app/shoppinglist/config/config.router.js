@@ -8,7 +8,7 @@ myApp.config(function($stateProvider) {
 
   .state('home', {
     url: '/',
-    template: 'XXXXX',
+    template: '<shopping-list></shopping-list>',
     resolve: {
       deps: ['$ocLazyLoad', function($ocLazyLoad) {
 
@@ -18,8 +18,8 @@ myApp.config(function($stateProvider) {
         ])
         .then(function(){
           return $ocLazyLoad.load([
-            'static/shoppinglist/components/shoppinglist/shoppinglist.model.js',
             'static/shoppinglist/components/shoppinglist/shoppinglist.component.js',
+            'static/shoppinglist/components/shoppinglist/shoppinglist.model.js',
           ]);
         });
 
