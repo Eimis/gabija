@@ -149,9 +149,14 @@
   <![endif]-->
 </head>
 
-<body>
+<body ng-app="shoppinglist">
+  <!--Frontend app dependencies:-->
   <script src="{% static 'angular/angular.js' %}"></script>
   <script src="{% static 'oclazyload/dist/ocLazyLoad.js' %}"></script>
+  <script src="{% static 'angular-ui-router/release/angular-ui-router.js' %}"></script>
+
+  <!--Frontend app files:-->
+  <script src="{% static 'shoppinglist/config/config.router.js' %}"></script>
 
   <aside>
     <h1>Groceries</h1>
