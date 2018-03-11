@@ -123,5 +123,6 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR + '/static/'
 
 STATICFILES_DIRS = [
-    os.path.abspath(os.path.join(BASE_DIR, '..', 'bower_components'))
+    os.path.abspath(os.path.join(BASE_DIR, '..', 'bower_components')),
+    os.path.abspath(os.path.join(BASE_DIR, '..', 'app')),
 ]
