@@ -2,3 +2,5 @@
 *.pyc
 *.sqlite3
 virtualenv/
+bower_components/
+static/
