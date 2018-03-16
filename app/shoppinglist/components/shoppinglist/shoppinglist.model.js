@@ -58,9 +58,32 @@ angular.module('shoppinglist')
         });
     }
 
+    //a method to update object instance:
+    function updateData(scope, updated_item) {
+
+      var config = {
+        headers: {'Accept': 'application/json'},
+      };
+
+      var data = {
+        updated_item: updated_item,
+      };
+
+      return $http.post('/shopping/update', data, config)
+        .then(function (response) {
+          var updated_item = angular.fromJson(response.data);
+          return {
+            updated_item: updated_item,
+          };
+        })
+        .catch(function (response) {
+        });
+    }
+
     return {
       submitData: submitData,
       listData: listData,
       clearData: clearData,
+      updateData: updateData,
     };
   });

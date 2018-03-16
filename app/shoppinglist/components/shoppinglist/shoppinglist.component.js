@@ -33,6 +33,15 @@ var shoppingListController = function($rootScope, $scope, shoppingListModel) {
     });
   };
 
+  ctrl.updateItem = function(shopping_item) {
+    ctrl.model.updateData(ctrl, shopping_item).then(function(resp){
+      if (resp.ok) {
+        //Reload data from backend:
+        ctrl.model.listData(ctrl);
+      }
+    });
+  };
+
 };
 
 angular

@@ -86,3 +86,44 @@ class ClearShoppingItemsView(APIView):
         items.delete()
 
         return Response({'ok': True})
+
+class UpdateShoppingItemView(APIView):
+    """
+    View to update shopping item instance in the system.
+
+    * Requires no authentication
+    * Requires no special permissions
+    """
+    # authentication_classes = (authentication.TokenAuthentication,)
+    # permission_classes = (permissions.IsAdminUser,)
+
+    # ony allow POST request:
+    http_method_names = ['post', ]
+
+    def post(self, request, format=None):
+        """
+        Update a ShoppingItem instance.
+        """
+        item = request.data.get('updated_item', None)
+
+        # Safety:
+        if not item:
+            return Response(status=403)
+
+        if 'purchased' not in item.keys() or 'name' not in item.keys():
+            return Response(status=403)
+
+        name = item['name']
+        purchased = item['purchased']
+
+        item_to_update = ShoppingItem.objects.filter(name=name).first()
+
+        if item_to_update:
+            item_to_update.purchased = purchased
+            item_to_update.save()
+
+            serializer = ShoppingItemSerializer(item_to_update)
+
+            return Response(serializer.data)
+        else:
+            return Response(status=403)
