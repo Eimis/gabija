@@ -2,7 +2,8 @@
   <h1>Groceries</h1>
 
   <div class="clear-items-wrapper">
-    <p class="badge badge-danger" id="clear-items" ng-click="$ctrl.clearItems()">clear all items</p>
+    <p class="badge" id="clear-items" ng-click="$ctrl.clearItems()">clear all items</p>
+    <p>Offline mode: <toggle ng-model="toggleValue" ng-change="changed()"></toggle></p>
   </div>
 
   <label

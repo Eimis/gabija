@@ -118,6 +118,7 @@ div.clear-items-wrapper {
   text-align: right;
 }
 p#clear-items {
+  background-color: red;
   cursor: pointer;
   margin-bottom: 50px;
 }
