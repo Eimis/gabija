@@ -8,9 +8,10 @@ var shoppingListController = function($rootScope, $scope, shoppingListModel, loc
   //Initial scope values:
   ctrl.currentItem = null;
   ctrl.allItems = [];
-  ctrl.offlineMode = false;
 
   ctrl.$onInit = function() {
+    ctrl.loadLocalData();
+
     ctrl.model.listData(ctrl).then(function(resp){
       ctrl.allItems = resp.items;
     });
@@ -43,9 +44,18 @@ var shoppingListController = function($rootScope, $scope, shoppingListModel, loc
     });
   };
 
-  ctrl.changeOfflineMode = function(mode) {
-    console.log(mode);
-  }
+  ctrl.changeOfflineMode = function() {
+    ctrl.saveDataLocally();
+  };
+
+  ctrl.loadLocalData = function() {
+    var offlineMode = localStorageService.get('offlineMode');
+    ctrl.offlineMode = offlineMode || false;  // can be null
+  };
+
+  ctrl.saveDataLocally = function() {
+    localStorageService.set('offlineMode', ctrl.offlineMode);
+  };
 
 };
 
