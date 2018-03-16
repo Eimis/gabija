@@ -1,6 +1,6 @@
 'use strict';
 
-var shoppingListController = function($rootScope, $scope, shoppingListModel) {
+var shoppingListController = function($rootScope, $scope, shoppingListModel, localStorageService) {
 
   var ctrl = this;
   ctrl.model = shoppingListModel;
