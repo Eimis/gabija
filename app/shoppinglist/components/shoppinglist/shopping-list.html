@@ -1,8 +1,8 @@
 <aside>
   <h1>Groceries</h1>
 
-  <div>
-    <p ng-click="$ctrl.clearItems()">Clear items</p>
+  <div class="clear-items-wrapper">
+    <p class="badge badge-danger" id="clear-items" ng-click="$ctrl.clearItems()">clear items</p>
   </div>
 
   <label ng-repeat="item in $ctrl.allItems track by $index">
