@@ -38,7 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # local apps:
     'gabija',
+
+    # 3rd party dependencies:
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
