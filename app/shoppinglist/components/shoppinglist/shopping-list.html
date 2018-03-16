@@ -1,6 +1,10 @@
 <aside>
   <h1>Groceries</h1>
 
+  <div>
+    <p ng-click="$ctrl.clearItems()">Clear items</p>
+  </div>
+
   <label ng-repeat="item in $ctrl.allItems track by $index">
     <input type=checkbox>
     <span>{{ item.name }} <span class="added_on">(added on: {{ item.added_on|date:'dd-MM-yyyy HH:mm:ss' }})</span></span>

@@ -25,6 +25,14 @@ var shoppingListController = function($rootScope, $scope, shoppingListModel) {
     }
   };
 
+  ctrl.clearItems = function() {
+    ctrl.model.clearData(ctrl).then(function(resp){
+      if (resp.ok) {
+        ctrl.model.listData(ctrl);
+      }
+    });
+  };
+
 };
 
 angular

@@ -63,3 +63,26 @@ class ListShoppingItemsView(APIView):
         serializer = ShoppingItemSerializer(items, many=True)
 
         return Response(serializer.data)
+
+
+class ClearShoppingItemsView(APIView):
+    """
+    View to clear all shopping items in the system.
+
+    * Requires no authentication
+    * Requires no special permissions
+    """
+    # authentication_classes = (authentication.TokenAuthentication,)
+    # permission_classes = (permissions.IsAdminUser,)
+
+    # ony allow GET request:
+    http_method_names = ['get', ]
+
+    def get(self, request, format=None):
+        """
+        Clears all ShoppingItem instances.
+        """
+        items = ShoppingItem.objects.all()
+        items.delete()
+
+        return Response({'ok': True})

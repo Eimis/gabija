@@ -1,7 +1,8 @@
 from django.conf.urls import url
 from django.contrib import admin
 
-from gabija.views import CreateShoppingItemView, ListShoppingItemsView, main
+from gabija.views import CreateShoppingItemView, ClearShoppingItemsView, \
+    ListShoppingItemsView, main
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -15,5 +16,10 @@ urlpatterns = [
         r'^shopping/list$',
         ListShoppingItemsView.as_view(),
         name='list_shopping_items'
+    ),
+    url(
+        r'^shopping/clear$',
+        ClearShoppingItemsView.as_view(),
+        name='clear_shopping_items'
     ),
 ]

@@ -33,6 +33,8 @@ angular.module('shoppinglist')
       return $http.get('/shopping/list', config)
         .then(function (response) {
           var items = angular.fromJson(response.data);
+
+          scope.allItems = items;
           return {
             items: items,
           };
@@ -41,8 +43,24 @@ angular.module('shoppinglist')
         });
     }
 
+    //a method to clear all object instances:
+    function clearData(scope) {
+
+      var config = {
+        headers: {'Accept': 'application/json'},
+      };
+
+      return $http.get('/shopping/clear', config)
+        .then(function (response) {
+          return response.data;
+        })
+        .catch(function (response) {
+        });
+    }
+
     return {
       submitData: submitData,
       listData: listData,
+      clearData: clearData,
     };
   });
