@@ -1,4 +1,4 @@
-var myApp = angular.module('shoppinglist', ['ui.router', 'oc.lazyLoad', ]);
+var myApp = angular.module('shoppinglist', ['ui.router', 'oc.lazyLoad', 'ui.toggle', ]);
 
 myApp.config(function($stateProvider) {
 

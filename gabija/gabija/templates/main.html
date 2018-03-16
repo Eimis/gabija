@@ -10,6 +10,7 @@
   <meta name="author" content="SitePoint">
 
   <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'angular-bootstrap-toggle/dist/angular-bootstrap-toggle.css' %}">
 
   <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
@@ -20,10 +21,12 @@
   <!--Frontend app dependencies:-->
   <script src="{% static 'angular/angular.js' %}"></script>
   <script src="{% static 'oclazyload/dist/ocLazyLoad.js' %}"></script>
+  <script src="{% static 'angular-bootstrap-toggle/dist/angular-bootstrap-toggle.js' %}"></script>
+
   <script src="{% static 'angular-ui-router/release/angular-ui-router.js' %}"></script>
 
-  <!--Frontend app files:-->
   <script src="{% static 'shoppinglist/config/config.router.js' %}"></script>
+
 
   <ui-view></ui-view>
 </body>
