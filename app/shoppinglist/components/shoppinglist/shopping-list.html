@@ -7,7 +7,10 @@
   </label>
 
   <div>
-    <input type="text" id="input" ng-model="$ctrl.currentItem" />
-    <input type="button" data-button="outline" value="➕" ng-click="$ctrl.addItem($ctrl.currentItem)" />
+    <!--Adding item should work both on pressing enter and clicking on button:-->
+    <form ng-submit="$ctrl.addItem($ctrl.currentItem)">
+      <input type="text" id="input" ng-model="$ctrl.currentItem" />
+      <input type="button" data-button="outline" value="➕" ng-click="$ctrl.addItem($ctrl.currentItem)" />
+    </form>
   </div>
 </aside>
