@@ -6,22 +6,6 @@ html, body {
   font-family: 'Source Sans Pro', 'Open Sans', Roboto, 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', 'Myriad Pro', 'Segoe UI', Myriad, Helvetica, 'Lucida Grande', 'DejaVu Sans Condensed', 'Liberation Sans', 'Nimbus Sans L', Tahoma, Geneva, Arial, sans-serif;
   padding: .5em;
 }
-* {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-kerning: auto;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-  cursor: default;
-  outline: none;
-}
 aside {
   max-width: 600px;
   margin: 0 auto;
@@ -40,7 +24,10 @@ h1 {
     font-family: 'Playfair Display', 'PT Serif', Cambria, 'Hoefler Text', Utopia, 'Liberation Serif', 'Nimbus Roman No9 L Regular', Times, 'Times New Roman', serif;
     font-style: italic;
 }
-label {
+input:focus {
+  outline: none;
+}
+label.shopping-item-label {
   display: block;
   padding: 1em;
   margin: 0;
@@ -48,17 +35,17 @@ label {
   position: relative;
   padding-left: 2em;
 }
-label:last-of-type {
+label.shopping-item-label:last-of-type {
   margin-bottom: 0;
 }
-[type=checkbox] {
+input[type=checkbox] {
   display: none;
 }
-[type=text] {
+input[type=text] {
   float: left;
 }
-[type=text],
-[type=button] {
+input[type=text],
+input[type=button] {
   -webkit-appearance: none;
   appearance: none;
   font-weight: 400;
@@ -76,26 +63,22 @@ label:last-of-type {
   background: white;
   border-radius: 0;
 }
-[type=button] {
+input[type=button] {
   width: 2em;
   margin-left: 1em;
   border: none;
 }
-div {
-  opacity: .5;
-  margin-top: 1em;
-}
-input:checked + span {
+input:checked + span.shopping-item {
   opacity: .3;
   text-decoration: line-through;
 }
-span {
+span.shopping-item {
   font-size: 14pt;
   line-height: 1.3;
   cursor: pointer;
   transition: opacity .5s ease-in-out;
 }
-span:before {
+span.shopping-item:before {
   content: '\f372';
   font-family: 'ionicons';
   position: absolute;
@@ -104,7 +87,7 @@ span:before {
   font-size: 18pt;
   line-height: 1;
 }
-input:checked + span:before {
+input:checked + span.shopping-item:before {
   content: '\f373';
 }
 @media (min-width: 600px) {
@@ -112,16 +95,16 @@ input:checked + span:before {
     margin: 2em auto;
     padding: 1em 2em;
   }
-  label {
+  label.shopping-item-label {
     padding-left: 3em;
   }
   h1 {
   font-size: 40pt;
   }
-  span {
+  span.shopping-item {
     font-size: 18pt;
   }
-  span:before {
+  span.shopping-item:before {
     top: calc(50% - 12pt);
     font-size: 24pt;
   }

@@ -5,9 +5,9 @@
     <p class="badge badge-danger" id="clear-items" ng-click="$ctrl.clearItems()">clear items</p>
   </div>
 
-  <label ng-repeat="item in $ctrl.allItems track by $index">
+  <label class="shopping-item-label" ng-repeat="item in $ctrl.allItems track by $index">
     <input type=checkbox>
-    <span>{{ item.name }} <span class="added_on">(added on: {{ item.added_on|date:'dd-MM-yyyy HH:mm:ss' }})</span></span>
+    <span class="shopping-item">{{ item.name }} <span class="added_on">(added on: {{ item.added_on|date:'dd-MM-yyyy HH:mm:ss' }})</span></span>
   </label>
 
   <div>
