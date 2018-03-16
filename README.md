@@ -16,4 +16,4 @@ Setup:
 * run `bower install` to install frontend dependencies
 * run `cd gabija/ && ./manage.py migrate` to run migrations
 * `./manage.py runserver`
-* Visit http://localhost:8000/
+* Visit http://localhost:8000/#/
