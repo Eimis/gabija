@@ -40,3 +40,26 @@ class CreateShoppingItemView(APIView):
         serializer = ShoppingItemSerializer(new_item)
 
         return Response(serializer.data)
+
+
+class ListShoppingItemsView(APIView):
+    """
+    View to list all shopping items in the system.
+
+    * Requires no authentication
+    * Requires no special permissions
+    """
+    # authentication_classes = (authentication.TokenAuthentication,)
+    # permission_classes = (permissions.IsAdminUser,)
+
+    # ony allow GET request:
+    http_method_names = ['get', ]
+
+    def get(self, request, format=None):
+        """
+        Lists all ShoppingItem instances.
+        """
+        items = ShoppingItem.objects.all()
+        serializer = ShoppingItemSerializer(items, many=True)
+
+        return Response(serializer.data)

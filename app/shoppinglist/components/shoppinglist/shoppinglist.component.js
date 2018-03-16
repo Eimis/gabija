@@ -5,12 +5,15 @@ var shoppingListController = function($rootScope, $scope, shoppingListModel) {
   var ctrl = this;
   ctrl.model = shoppingListModel;
 
-  ctrl.$onInit = function() {
-  };
-
   //Initial scope values:
   ctrl.currentItem = null;
   ctrl.allItems = [];
+
+  ctrl.$onInit = function() {
+    ctrl.model.listData(ctrl).then(function(resp){
+      ctrl.allItems = resp.items;
+    });
+  };
 
   ctrl.addItem = function(addedItem) {
     if (addedItem) {
