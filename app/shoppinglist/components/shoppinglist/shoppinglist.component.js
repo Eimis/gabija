@@ -8,6 +8,18 @@ var shoppingListController = function($rootScope, $scope) {
   ctrl.$onInit = function() {
   };
 
+  //Initial scope values:
+  ctrl.currentItem = null;
+  ctrl.allItems = [];
+
+  ctrl.addItem = function(addedItem) {
+    if (addedItem) {
+      ctrl.allItems.push(addedItem);
+      ctrl.currentItem = null;
+      console.log(ctrl.allItems);
+    }
+  };
+
 };
 
 angular
