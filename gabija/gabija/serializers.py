@@ -7,4 +7,4 @@ class ShoppingItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ShoppingItem
-        fields = ('name', 'added_on', )
+        fields = ('name', 'added_on', 'purchased', )
