@@ -108,6 +108,10 @@ span {
   transition: opacity .5s ease-in-out;
 }
 
+span.added_on {
+  font-size: 15px;
+}
+
 span:before {
   content: '\f372';
   font-family: 'ionicons';
