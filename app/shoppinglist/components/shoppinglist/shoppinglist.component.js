@@ -6,9 +6,8 @@ var shoppingListController = function($rootScope, $scope) {
   //ctrl.model = ticTacModel;
 
   ctrl.$onInit = function() {
-    console.log('inited');
-    //loadSavedGame();
   };
+
 };
 
 angular

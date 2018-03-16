@@ -14,12 +14,12 @@ myApp.config(function($stateProvider) {
 
         //extra css:
         return $ocLazyLoad.load([
-          'static/shoppinglist/components/shoppinglist/shoppinglist.css',
+          '/static/shoppinglist/components/shoppinglist/shoppinglist.css',
         ])
         .then(function(){
           return $ocLazyLoad.load([
-            'static/shoppinglist/components/shoppinglist/shoppinglist.component.js',
-            'static/shoppinglist/components/shoppinglist/shoppinglist.model.js',
+            '/static/shoppinglist/components/shoppinglist/shoppinglist.model.js',
+            '/static/shoppinglist/components/shoppinglist/shoppinglist.component.js',
           ]);
         });
 
