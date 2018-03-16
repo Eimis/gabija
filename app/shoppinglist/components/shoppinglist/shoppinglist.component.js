@@ -8,6 +8,7 @@ var shoppingListController = function($rootScope, $scope, shoppingListModel) {
   //Initial scope values:
   ctrl.currentItem = null;
   ctrl.allItems = [];
+  ctrl.offlineMode = false;
 
   ctrl.$onInit = function() {
     ctrl.model.listData(ctrl).then(function(resp){
@@ -41,6 +42,10 @@ var shoppingListController = function($rootScope, $scope, shoppingListModel) {
       }
     });
   };
+
+  ctrl.changeOfflineMode = function(mode) {
+    console.log(mode);
+  }
 
 };
 

@@ -3,7 +3,13 @@
 
   <div class="clear-items-wrapper">
     <p class="badge" id="clear-items" ng-click="$ctrl.clearItems()">clear all items</p>
-    <p>Offline mode: <toggle ng-model="toggleValue" ng-change="changed()"></toggle></p>
+    <p>
+      Offline mode: <toggle
+                    ng-model="$ctrl.offlineMode"
+                    ng-change="$ctrl.changeOfflineMode($ctrl.offlineMode)"
+                    onstyle="btn-success"
+                    offstyle="btn-danger"></toggle>
+    </p>
   </div>
 
   <label
