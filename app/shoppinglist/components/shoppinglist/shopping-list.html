@@ -1,16 +1,13 @@
 <aside>
   <h1>Groceries</h1>
 
-  <label ng-repeat="item in $ctrl.allItems">
+  <label ng-repeat="item in $ctrl.allItems track by $index">
     <input type=checkbox>
     <span>{{ item }}</span>
   </label>
 
   <div>
-    <!--Adding item should work both on pressing enter and clicking on button:-->
-    <form ng-submit="$ctrl.addItem($ctrl.currentItem)">
-      <input type="text" id="input" ng-model="$ctrl.currentItem" />
-      <input type="button" data-button="outline" value="➕" ng-click="$ctrl.addItem($ctrl.currentItem)" />
-    </form>
+    <input type="text" id="input" ng-model="$ctrl.currentItem" />
+    <input type="button" data-button="outline" value="➕" ng-click="$ctrl.addItem($ctrl.currentItem)" />
   </div>
 </aside>
