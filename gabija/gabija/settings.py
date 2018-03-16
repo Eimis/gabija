@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     # 3rd party dependencies:
     'rest_framework',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
