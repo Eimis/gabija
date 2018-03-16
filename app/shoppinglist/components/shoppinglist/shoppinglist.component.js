@@ -1,9 +1,9 @@
 'use strict';
 
-var shoppingListController = function($rootScope, $scope) {
+var shoppingListController = function($rootScope, $scope, shoppingListModel) {
 
   var ctrl = this;
-  //ctrl.model = ticTacModel;
+  ctrl.model = shoppingListModel;
 
   ctrl.$onInit = function() {
   };
@@ -14,9 +14,11 @@ var shoppingListController = function($rootScope, $scope) {
 
   ctrl.addItem = function(addedItem) {
     if (addedItem) {
-      ctrl.allItems.push(addedItem);
       ctrl.currentItem = null;
-      console.log(ctrl.allItems);
+
+      ctrl.model.submitData(ctrl, addedItem).then(function(resp){
+        ctrl.allItems.push(resp.shopping_item);
+      });
     }
   };
 
