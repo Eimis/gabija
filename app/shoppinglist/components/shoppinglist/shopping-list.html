@@ -5,7 +5,7 @@
     <p class="badge badge-danger" id="clear-items" ng-click="$ctrl.clearItems()">clear all items</p>
   </div>
 
-  <label class="shopping-item-label" ng-repeat="item in $ctrl.allItems track by $index">
+  <label class="shopping-item-label" ng-repeat="item in $ctrl.allItems | orderBy:'purchased' track by $index">
     <input type=checkbox ng-checked="{{ item.purchased }}">
     <span class="shopping-item">{{ item.name }} <span class="added_on">(added on: {{ item.added_on|date:'dd-MM-yyyy HH:mm:ss' }})</span></span>
   </label>
