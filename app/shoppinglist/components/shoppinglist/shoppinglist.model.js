@@ -13,9 +13,9 @@ angular.module('shoppinglist')
 
       return $http.post('/shopping/create', data, config)
         .then(function (response) {
-          var resultObj = angular.fromJson(response.data);
+          var added_item = angular.fromJson(response.data);
           return {
-            shopping_item: resultObj.added_item,
+            shopping_item: added_item,
           };
         })
         .catch(function (response) {

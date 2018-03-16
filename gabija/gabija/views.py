@@ -4,6 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from gabija.models import ShoppingItem
+from gabija.serializers import ShoppingItemSerializer
 
 
 def main(request):
@@ -35,4 +36,7 @@ class CreateShoppingItemView(APIView):
         if not item:
             return Response(status=403)
 
-        return Response({'added_item': item})
+        new_item = ShoppingItem.objects.create(name=item)
+        serializer = ShoppingItemSerializer(new_item)
+
+        return Response(serializer.data)
