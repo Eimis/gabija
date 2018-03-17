@@ -1,5 +1,5 @@
 angular.module('shoppinglist')
-  .factory('shoppingListModel', function($http, $q) {
+  .factory('shoppingListModel', function($http, $q, localStorageService) {
 
     //a method to create new object instance:
     function submitData(scope, shopping_item) {
@@ -56,16 +56,26 @@ angular.module('shoppinglist')
     //a method to clear all object instances:
     function clearData(scope) {
 
-      var config = {
-        headers: {'Accept': 'application/json'},
-      };
+      if (scope.offlineMode) { // ofline mode
+        var deferred = $q.defer();
 
-      return $http.get('/shopping/clear', config)
-        .then(function (response) {
-          return response.data;
-        })
-        .catch(function (response) {
-        });
+        localStorageService.set('allItems', []);
+
+        deferred.resolve({'ok': true});
+        return deferred.promise;
+
+      } else { // online mode
+        var config = {
+          headers: {'Accept': 'application/json'},
+        };
+
+        return $http.get('/shopping/clear', config)
+          .then(function (response) {
+            return response.data;
+          })
+          .catch(function (response) {
+          });
+      }
     }
 
     //a method to update object instance:
