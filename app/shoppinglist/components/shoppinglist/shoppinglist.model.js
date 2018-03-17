@@ -37,24 +37,38 @@ angular.module('shoppinglist')
       }
     }
 
-    //a method to list all object instances:
+    //a method to list all object instances either from server or local
+    //storage (offline mode):
     function listData(scope) {
 
-      var config = {
-        headers: {'Accept': 'application/json'},
-      };
+      if (scope.offlineMode) {
+        var deferred = $q.defer();
 
-      return $http.get('/shopping/list', config)
-        .then(function (response) {
-          var items = angular.fromJson(response.data);
+        var all_items = localStorageService.get('allItems');
 
-          scope.allItems = items;
-          return {
-            items: items,
-          };
-        })
-        .catch(function (response) {
-        });
+        //FIXME: move to component?
+        scope.allItems = all_items;
+
+        deferred.resolve({'items': all_items});
+
+        return deferred.promise;
+      } else {
+        var config = {
+          headers: {'Accept': 'application/json'},
+        };
+
+        return $http.get('/shopping/list', config)
+          .then(function (response) {
+            var items = angular.fromJson(response.data);
+
+            scope.allItems = items;
+            return {
+              items: items,
+            };
+          })
+          .catch(function (response) {
+          });
+      }
     }
 
     //a method to clear all object instances:

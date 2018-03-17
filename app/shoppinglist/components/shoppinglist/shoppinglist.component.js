@@ -46,7 +46,7 @@ var shoppingListController = function($rootScope, $scope, shoppingListModel, loc
   };
 
   ctrl.changeOfflineMode = function() {
-    //ctrl.saveDataLocally();
+    ctrl.saveDataLocally();
   };
 
   ctrl.loadLocalData = function() {
