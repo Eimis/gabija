@@ -127,3 +127,51 @@ class UpdateShoppingItemView(APIView):
             return Response(serializer.data)
         else:
             return Response(status=403)
+
+
+class SyncShoppingItemsView(APIView):
+    """
+    View to sync database with items when switching to online mode from
+    frontend.
+
+    * Requires no authentication
+    * Requires no special permissions
+    """
+    # authentication_classes = (authentication.TokenAuthentication,)
+    # permission_classes = (permissions.IsAdminUser,)
+
+    # ony allow POST request:
+    http_method_names = ['post', ]
+
+    def post(self, request, format=None):
+        """
+        Sync ShoppingItem instances.
+        """
+        posted_items = request.data.get('items', None)
+
+        current_items = ShoppingItem.objects.all()
+        posted_item_names = [item['name'] for item in posted_items]
+
+        # 1. remove items from database that have been deleted in offline mode:
+        for item in current_items:
+            if item.name not in posted_item_names:
+                item.delete()
+
+        # if not posted_items:
+            # return Response(status=403)
+
+        # 2. create items that are not yet present in the database and that
+        # have been created in offline mode. Also, update 'purchased' states:
+        for item in posted_items:
+            try:
+                i = ShoppingItem.objects.get(name=item['name'])
+                i.purchased = item['purchased']
+                i.save()
+            except ShoppingItem.DoesNotExist:
+                ShoppingItem.objects.create(
+                    name=item['name'],
+                    added_on=item['added_on'],
+                    purchased=item['purchased'],
+                )
+
+        return Response({'ok': True})

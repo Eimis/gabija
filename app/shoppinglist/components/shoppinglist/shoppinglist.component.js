@@ -41,17 +41,25 @@ var shoppingListController = function($rootScope, $scope, shoppingListModel, loc
   ctrl.updateItem = function(shopping_item) {
     ctrl.model.updateData(ctrl, shopping_item).then(function(resp){
       if (resp.ok) {
-        //Reload data from backend:
         ctrl.model.listData(ctrl).then(function(resp){
-          //console.log(resp)
           ctrl.allItems = resp.items;
         });
       }
     });
   };
 
-  ctrl.changeOfflineMode = function(mode) {
+  ctrl.changeOfflineMode = function(offlineMode) {
     localStorageService.set('offlineMode', ctrl.offlineMode);
+
+    //If mode is changed from online to offline, nothing needs to be done because
+    //items are always saved into local storage anyway.
+    //If we're going back to online mode, database has to be updated with new
+    //items:
+    if (!offlineMode) { // we're switching to online mode
+      var current_items = localStorageService.get('allItems');
+
+      ctrl.model.syncData(ctrl, current_items);
+    }
   };
 
 };

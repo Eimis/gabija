@@ -5,7 +5,6 @@ angular.module('shoppinglist')
     function submitData(scope, shopping_item) {
 
       //Always update item in local storage regardless of online/offline mode:
-      //FIXME: timezone:
       var new_item = {
         'name': shopping_item,
         'added_on': new Date(),
@@ -135,10 +134,31 @@ angular.module('shoppinglist')
       }
     }
 
+    //Synchronizes data with backend server:
+    function syncData(scope, items) {
+
+      var config = {
+        headers: {
+          'Accept': 'application/json'
+        },
+      };
+
+      var data = {
+        items: items,
+      };
+
+      return $http.post('/shopping/sync', data, config)
+        .then(function(response) {
+          return true;
+        })
+        .catch(function(response) {});
+    }
+
     return {
       submitData: submitData,
       listData: listData,
       clearData: clearData,
       updateData: updateData,
+      syncData: syncData,
     };
   });

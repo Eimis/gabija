@@ -2,7 +2,7 @@ from django.conf.urls import url
 from django.contrib import admin
 
 from gabija.views import CreateShoppingItemView, ClearShoppingItemsView, \
-    ListShoppingItemsView, main, UpdateShoppingItemView
+    ListShoppingItemsView, main, SyncShoppingItemsView, UpdateShoppingItemView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -26,5 +26,10 @@ urlpatterns = [
         r'^shopping/update$',
         UpdateShoppingItemView.as_view(),
         name='update_shopping_item'
+    ),
+    url(
+        r'^shopping/sync$',
+        SyncShoppingItemsView.as_view(),
+        name='sync_shopping_items'
     ),
 ]
