@@ -8,6 +8,11 @@ angular.module('shoppinglist')
         var deferred = $q.defer();
 
         //FIXME: timezone:
+        var new_item = {
+          'name': shopping_item,
+          'added_on': new Date(),
+          'purchased': false
+        };
         var new_item = {'name': shopping_item, 'added_on': new Date()};
 
         deferred.resolve({'shopping_item': new_item});
