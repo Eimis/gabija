@@ -4,19 +4,20 @@ angular.module('shoppinglist')
     //a method to create new object instance:
     function submitData(scope, shopping_item) {
 
+      //Always update item in local storage regardless of online/offline mode:
+      //FIXME: timezone:
+      var new_item = {
+        'name': shopping_item,
+        'added_on': new Date(),
+        'purchased': false
+      };
+
+      var all_items = localStorageService.get('allItems');
+      all_items.push(new_item);
+      localStorageService.set('allItems', all_items);
+
       if (scope.offlineMode) {  // ofline mode
         var deferred = $q.defer();
-
-        //FIXME: timezone:
-        var new_item = {
-          'name': shopping_item,
-          'added_on': new Date(),
-          'purchased': false
-        };
-
-        var all_items = localStorageService.get('allItems');
-        all_items.push(new_item);
-        localStorageService.set('allItems', all_items);
 
         deferred.resolve({'shopping_item': new_item});
         return deferred.promise;
@@ -74,10 +75,10 @@ angular.module('shoppinglist')
     //a method to clear all object instances:
     function clearData(scope) {
 
+      localStorageService.set('allItems', []);
+
       if (scope.offlineMode) { // ofline mode
         var deferred = $q.defer();
-
-        localStorageService.set('allItems', []);
 
         deferred.resolve({'ok': true});
         return deferred.promise;
@@ -99,18 +100,16 @@ angular.module('shoppinglist')
     //a method to update object instance:
     function updateData(scope, updated_item) {
 
+      //Always update item in local storage regardless of online/offline mode:
+      var all_items = localStorageService.get('allItems');
+      var result = all_items.filter(function(obj) {
+        return obj.name == updated_item.name;
+      })[0];
+      result.purchased = updated_item.purchased;
+      localStorageService.set('allItems', all_items);
+
       if (scope.offlineMode) { // offline mode
         var deferred = $q.defer();
-
-        var all_items = localStorageService.get('allItems');
-
-        var result = all_items.filter(function(obj) {
-          return obj.name == updated_item.name;
-        })[0];
-
-        result.purchased = updated_item.purchased;
-
-        localStorageService.set('allItems', all_items);
         deferred.resolve({'ok': true});
 
         return deferred.promise;
