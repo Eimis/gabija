@@ -46,9 +46,6 @@ angular.module('shoppinglist')
 
         var all_items = localStorageService.get('allItems');
 
-        //FIXME: move to component?
-        scope.allItems = all_items;
-
         deferred.resolve({'items': all_items});
 
         return deferred.promise;
@@ -61,7 +58,6 @@ angular.module('shoppinglist')
           .then(function (response) {
             var items = angular.fromJson(response.data);
 
-            scope.allItems = items;
             return {
               items: items,
             };
