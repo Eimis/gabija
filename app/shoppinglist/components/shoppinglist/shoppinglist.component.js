@@ -31,7 +31,9 @@ var shoppingListController = function($rootScope, $scope, shoppingListModel, loc
   ctrl.clearItems = function() {
     ctrl.model.clearData(ctrl).then(function(resp){
       if (resp.ok) {
-        ctrl.model.listData(ctrl);
+        ctrl.model.listData(ctrl).then(function(resp){
+          ctrl.allItems = resp.items;
+        });
       }
     });
   };
@@ -40,7 +42,10 @@ var shoppingListController = function($rootScope, $scope, shoppingListModel, loc
     ctrl.model.updateData(ctrl, shopping_item).then(function(resp){
       if (resp.ok) {
         //Reload data from backend:
-        ctrl.model.listData(ctrl);
+        ctrl.model.listData(ctrl).then(function(resp){
+          //console.log(resp)
+          ctrl.allItems = resp.items;
+        });
       }
     });
   };
