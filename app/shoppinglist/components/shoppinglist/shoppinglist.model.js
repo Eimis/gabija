@@ -1,26 +1,36 @@
 angular.module('shoppinglist')
-  .factory('shoppingListModel', function($http) {
+  .factory('shoppingListModel', function($http, $q) {
 
     //a method to create new object instance:
     function submitData(scope, shopping_item) {
 
-      var config = {
-        headers: {'Accept': 'application/json'},
-      };
+      if (scope.offlineMode) {  // ofline mode
+        var deferred = $q.defer();
 
-      var data = {
-        shopping_item: shopping_item,
-      };
+        //FIXME: timezone:
+        var new_item = {'name': shopping_item, 'added_on': new Date()};
 
-      return $http.post('/shopping/create', data, config)
-        .then(function (response) {
-          var added_item = angular.fromJson(response.data);
-          return {
-            shopping_item: added_item,
-          };
-        })
-        .catch(function (response) {
-        });
+        deferred.resolve({'shopping_item': new_item});
+        return deferred.promise;
+
+      } else { // online mode
+        var config = {
+          headers: {'Accept': 'application/json'},
+        };
+
+        var data = {
+          shopping_item: shopping_item,
+        };
+
+        return $http.post('/shopping/create', data, config)
+          .then(function(response) {
+            var added_item = angular.fromJson(response.data);
+            return {
+              shopping_item: added_item,
+            };
+          })
+          .catch(function(response) {});
+      }
     }
 
     //a method to list all object instances:
