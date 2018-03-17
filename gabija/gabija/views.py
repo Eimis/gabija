@@ -157,9 +157,6 @@ class SyncShoppingItemsView(APIView):
             if item.name not in posted_item_names:
                 item.delete()
 
-        # if not posted_items:
-            # return Response(status=403)
-
         # 2. create items that are not yet present in the database and that
         # have been created in offline mode. Also, update 'purchased' states:
         for item in posted_items:
