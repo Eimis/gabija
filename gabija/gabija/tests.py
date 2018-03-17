@@ -67,3 +67,19 @@ class GroceriesAPITestCase(TestCase):
         self.assertTrue(response.data[0]['added_on'])
         self.assertTrue(response.data[1]['added_on'])
         self.assertTrue(response.data[2]['added_on'])
+
+    def test_clear_shopping_items_view(self):
+        """
+        Tests if this API endpoint clears all ShoppingItem model instances
+        """
+        ShoppingItemFactory(name='Apple')
+        ShoppingItemFactory(name='Pear')
+        ShoppingItemFactory(name='Orange')
+
+        self.assertEquals(ShoppingItem.objects.count(), 3)
+
+        response = self.client.get(reverse('clear_shopping_items'))
+        self.assertEqual(response.status_code, 200)
+        self.assertEquals(response.data, {'ok': True})
+
+        self.assertEquals(ShoppingItem.objects.count(), 0)
