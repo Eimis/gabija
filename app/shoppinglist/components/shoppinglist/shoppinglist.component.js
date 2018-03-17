@@ -23,7 +23,6 @@ var shoppingListController = function($rootScope, $scope, shoppingListModel, loc
 
       ctrl.model.submitData(ctrl, addedItem).then(function(resp){
         ctrl.allItems.push(resp.shopping_item);
-        ctrl.saveDataLocally();
       });
     }
   };
@@ -61,7 +60,6 @@ var shoppingListController = function($rootScope, $scope, shoppingListModel, loc
 
   ctrl.saveDataLocally = function() {
     localStorageService.set('offlineMode', ctrl.offlineMode);
-    localStorageService.set('allItems', ctrl.allItems);
   };
 
 };

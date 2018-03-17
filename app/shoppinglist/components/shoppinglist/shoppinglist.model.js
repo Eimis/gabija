@@ -14,6 +14,10 @@ angular.module('shoppinglist')
           'purchased': false
         };
 
+        var all_items = localStorageService.get('allItems');
+        all_items.push(new_item);
+        localStorageService.set('allItems', all_items);
+
         deferred.resolve({'shopping_item': new_item});
         return deferred.promise;
 
