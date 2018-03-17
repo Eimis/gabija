@@ -19,7 +19,7 @@ Setup:
 * run `cd gabija/ && ./manage.py migrate` to run migrations
 * run `./manage.py collectstatic`
 * `./manage.py runserver`
-* Visit http://localhost:8000/#/
+* Visit http://localhost:8000/#/ (don't forget the # character!)
 
 Key points:
 
@@ -33,3 +33,14 @@ Key points:
   back to online mode again (don't forget to start Django's server with
   `./manage.py runserver` if you turned it offpreviously) and everyhing will
   be synced with database.
+
+Some technical notes:
+
+* Backend is implemented as a RESTful API with Django rest framework,
+  serializers and etc.
+* Frontend is implemented as a fully functional Angular-based Single page
+  application with pluggable components approach (with such approach, every
+  component has a `*.model.js`, `*.component.js`, `*.template.html`, `*.style.css`
+  file), so that means that one can pull any component (in this case:
+  `<shopping-list></shopping-list>` component) from anywhere and place it
+  anywhere and everything should work automatically.
