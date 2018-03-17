@@ -18,4 +18,16 @@ Setup:
 * `./manage.py runserver`
 * Visit http://localhost:8000/#/
 
+Key points:
+
+* The app starts in online mode initially, but works in offline mode as well
+* Every action is synced with browser's localStorage
+* Once ong goes from offline to online mode, items (or actions that have been
+  taken with the items) are synced to backend database
+* In order to test this, you can add some items in online mode, switch to
+  offline mode (even turn off Django's runserver command), change some of the
+  items (mark as purchased, add new ones or remove existing ones), then get
+  back to online mode again (don't forget to start Django's server with
+  `./manage.py runserver`) and everyhing will be synced with database.
+
 ![Preview](https://i.imgur.com/XV5Aewk.png "Preview")
