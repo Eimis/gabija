@@ -13,7 +13,6 @@ angular.module('shoppinglist')
           'added_on': new Date(),
           'purchased': false
         };
-        var new_item = {'name': shopping_item, 'added_on': new Date()};
 
         deferred.resolve({'shopping_item': new_item});
         return deferred.promise;
@@ -86,23 +85,41 @@ angular.module('shoppinglist')
     //a method to update object instance:
     function updateData(scope, updated_item) {
 
-      var config = {
-        headers: {'Accept': 'application/json'},
-      };
+      if (scope.offlineMode) { // offline mode
+        var deferred = $q.defer();
 
-      var data = {
-        updated_item: updated_item,
-      };
+        var all_items = localStorageService.get('allItems');
 
-      return $http.post('/shopping/update', data, config)
-        .then(function (response) {
-          var updated_item = angular.fromJson(response.data);
-          return {
-            updated_item: updated_item,
-          };
-        })
-        .catch(function (response) {
-        });
+        var result = all_items.filter(function(obj) {
+          return obj.name == updated_item.name;
+        })[0];
+
+        result.purchased = updated_item.purchased;
+
+        localStorageService.set('allItems', all_items);
+        deferred.resolve({'ok': true});
+
+        return deferred.promise;
+
+      } else { // online mode
+        var config = {
+          headers: {'Accept': 'application/json'},
+        };
+
+        var data = {
+          updated_item: updated_item,
+        };
+
+        return $http.post('/shopping/update', data, config)
+          .then(function (response) {
+            var updated_item = angular.fromJson(response.data);
+            return {
+              updated_item: updated_item,
+            };
+          })
+          .catch(function (response) {
+          });
+      }
     }
 
     return {
