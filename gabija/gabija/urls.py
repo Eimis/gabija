@@ -6,7 +6,7 @@ from gabija.views import CreateShoppingItemView, ClearShoppingItemsView, \
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', main),
+    url(r'^$', main, name='main'),
     url(
         r'^shopping/create$',
         CreateShoppingItemView.as_view(),

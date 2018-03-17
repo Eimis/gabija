@@ -44,3 +44,4 @@ Some technical notes:
   file), so that means that one can pull any component (in this case:
   `<shopping-list></shopping-list>` component) from anywhere and place it
   anywhere and everything should work automatically.
+* To run API tests, run `./manage.py test`. Factoryboy is used for fixtures.
