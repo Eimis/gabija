@@ -87,6 +87,7 @@ class ClearShoppingItemsView(APIView):
 
         return Response({'ok': True})
 
+
 class UpdateShoppingItemView(APIView):
     """
     View to update shopping item instance in the system.
