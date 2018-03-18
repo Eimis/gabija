@@ -1,6 +1,6 @@
 # gabija
 
-![Preview](https://i.imgur.com/XV5Aewk.png "Preview")
+![Preview](https://i.imgur.com/dDwRVuP.png "Preview")
 
 A simple shopping list application
 
